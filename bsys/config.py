@@ -1,17 +1,17 @@
 
 class Global:
-    SOURCE  = "seav/"
+    SOURCE  = "sov/"
     CEXT    = [".cpp", ".c"]
     AEXT    = ".s"
     OBJDIR  = "objects/"
-    OUTPUT  = "bin/seav.bin"
-    ISO     = "bin/seav.iso"
+    OUTPUT  = "bin/sov.bin"
+    ISO     = "bin/sov.iso"
     RDDIR   = "initsysdir/"
     RDFILE  = "isodir/ramdisk.img"
 
 class LIMINE:
     EXEC = "./limine/limine"
-    CONF = "seav/config/limine.cfg"
+    CONF = "sov/config/limine.cfg"
     DIR  = "limine/"
     ISODIR = "isodir/"
 
@@ -57,7 +57,7 @@ class LD:
     LD = "ld"
     LDFLAGS = ' '.join(
         [
-            "-T seav/config/linker.ld",
+            "-T sov/config/linker.ld",
             "-nostdlib",
             "-m elf_x86_64",
             "-static",
