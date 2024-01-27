@@ -1,6 +1,7 @@
 #include <std/stdio.h>
 #include <core/serial/serial.h>
 #include <std/stdlib.h>
+#include <core/memory/alloc.h>
 
 #include <stdarg.h>
 
@@ -39,6 +40,17 @@ namespace std {
         }
         str[i] = '\0';
         std::reverse(str, i);
+    }
+
+    char *strdup(const char *s1) {
+        char *str;
+        size_t size = strlen(s1) + 1;
+
+        str = (char*)malloc(size);
+        if (str) {
+            memcpy(str, s1, size);
+        }
+        return str;
     }
 
     namespace SerialIO {

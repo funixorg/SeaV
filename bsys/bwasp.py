@@ -2,6 +2,7 @@ from os import system as _sysrun, walk as _pwalk
 from os.path import join as _pjoin
 from sys import argv as _argv
 import config
+import tarS90
 
 class Builder:
     def __init__(self):
@@ -111,7 +112,10 @@ class Builder:
                 config.Global.ISO,
             )))
             exit(ret)
-        
+    
+    def _tar_rd(self) -> None:
+        print(f"[TAR] -- {config.Global.RDFILE}")
+        tarS90.TarArchive(config.Global.RDDIR, config.Global.RDFILE)
 
     def build(self) -> None:
         self.cfiles = self.__srcf__(config.Global.CEXT)
@@ -123,6 +127,7 @@ class Builder:
         if self.objects: 
             self._link()
             self._limine()
+            self._tar_rd()
 
 class Runner():
     def __init__(self):

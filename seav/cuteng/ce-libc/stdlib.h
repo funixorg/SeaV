@@ -83,10 +83,6 @@ void *aligned_alloc(size_t alignment, size_t size);
 
 void *calloc(size_t nmemb, size_t size);
 
-void free(void *ptr);
-
-void *malloc(size_t size);
-
 void *realloc(void *ptr, size_t size);
 
 /* --- 7.22.4 - Communication with the environment -------------------------- */

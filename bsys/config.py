@@ -1,11 +1,13 @@
 
 class Global:
-    SOURCE = "seav/"
+    SOURCE  = "seav/"
     CEXT    = [".cpp", ".c"]
     AEXT    = ".s"
     OBJDIR  = "objects/"
     OUTPUT  = "bin/seav.bin"
     ISO     = "bin/seav.iso"
+    RDDIR   = "initsysdir/"
+    RDFILE  = "isodir/ramdisk.img"
 
 class LIMINE:
     EXEC = "./limine/limine"
@@ -20,7 +22,6 @@ class CC:
             f"-I./{Global.SOURCE}",
             f"-I./{LIMINE.DIR}",
             f"-I./{Global.SOURCE}cuteng/cstd/",
-            f"-I./{Global.SOURCE}cuteng/ce-libc/",
             "-c",
             "-Wall",
             "-Wextra",
@@ -38,7 +39,10 @@ class CC:
             "-mno-sse2",
             "-mno-red-zone",
             "-fno-stack-protector",
-            "-Wno-missing-field-initializers"
+            "-fno-stack-check",
+            "-Wno-missing-field-initializers",
+            "-Wno-pointer-arith",
+            "-Wno-write-strings"
         ]
     )
 
@@ -84,7 +88,7 @@ class QEMU:
     QMFLAGS = ' '.join(
         [
             "-smp 2",
-            "-m 4096",
+            "-m 256",
             "-bios /usr/share/OVMF/x64/OVMF.fd",
             "-serial mon:stdio",
         ]
